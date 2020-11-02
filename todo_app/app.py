@@ -10,13 +10,14 @@ app.config.from_object(Config)
 
 @app.route('/')
 def index():
-    #return 'Hello World!'
-    items = get_items()
-    return render_template('/index.html', items=items)
+    return view()
 
 @app.route('/add', methods = ['POST'])
 def add():
     add_item(request.form.get('title'))
+    return view()
+
+def view():
     items = get_items()
     return render_template('/index.html', items=items)
 
