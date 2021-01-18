@@ -1,6 +1,6 @@
-from flask import Flask, render_template, request
+from flask import Flask, redirect, render_template, request, url_for
 
-from todo_app.data.session_items import get_items, add_item
+from todo_app.data.session_items import get_items, add_item, remove_item
 
 from todo_app.flask_config import Config
 
@@ -15,7 +15,7 @@ def index():
 @app.route('/add', methods = ['POST'])
 def add():
     add_item(request.form.get('title'))
-    return view()
+    return redirect(url_for('index'))
 
 def view():
     items = get_items()
