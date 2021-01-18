@@ -53,6 +53,21 @@ def add_item(title):
 
     return item
 
+def remove_item(id):
+    """
+    Removes an new item with the specified from the session.
+
+    Args:
+        id: The id of the item.
+
+    Returns:
+        none.
+    """
+    items = get_items()
+    item = get_item(id)
+
+    items.remove(item)
+    session['items'] = items
 
 def save_item(item):
     """
