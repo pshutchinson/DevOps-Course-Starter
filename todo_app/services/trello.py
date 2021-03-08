@@ -2,7 +2,7 @@ import requests
 
 from flask import current_app as app
 
-from todoItem import ToDoItem
+from todo_app.todoItem import ToDoItem
 
 board_url = "https://api.trello.com/1/boards/{id}"
 
@@ -39,7 +39,7 @@ def get_lists():
     get_boards()
     
     params = get_list_params()
-    url = get_url('boards/%s/lists' % '6006195ae74f187322fda449')
+    url = get_url('boards/%s/lists' % app.config['TRELLO_BUILD_ID'])
     
     response = requests.get(url, params)
 
@@ -81,7 +81,7 @@ def add_item(title):
 def update_item(id, list_name):
     move_to_list = get_named_list(list_name)
     updated_card = move_card(id, move_to_list)
-    return ToDoItem.convertFromTrello(updated_card, move_to_list)
+    ToDoItem.convertFromTrello(updated_card, move_to_list)
 
 def move_card(card_id, list):
     params = update_card_params(list)

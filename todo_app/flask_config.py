@@ -9,3 +9,5 @@ class Config:
 
     TRELLO_KEY= os.environ.get('TRELLO_KEY')
     TRELLO_TOKEN = os.environ.get('TRELLO_TOKEN')
+    TRELLO_BUILD_ID = os.environ.get('TRELLO_BUILD_ID')
+    
