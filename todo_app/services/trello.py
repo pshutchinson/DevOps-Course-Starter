@@ -39,7 +39,7 @@ def get_lists():
     get_boards()
     
     params = get_list_params()
-    url = get_url('boards/%s/lists' % app.config['TRELLO_BUILD_ID'])
+    url = get_url('boards/%s/lists' % app.config['TRELLO_BOARD_ID'])
     
     response = requests.get(url, params)
 
