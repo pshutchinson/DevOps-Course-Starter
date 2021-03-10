@@ -11,14 +11,22 @@
     <div class="col-md-12">
       <h2>Items</h2>
       <table>
-        <th>Done?</th>
         <th>Title</th>
+        <th>Description</th>
+        <th>Due Date</th>
         <th>Status</th>
+        <th>Action</th>
         {% for item in items %}
         <tr>
-          <td><input type="checkbox"/></td>
-          <td>{{item.title}}</td>
+          <td>{{item.name}}</td>
+          <td>{{item.description}}</td>
+          <td>{{item.due}}</td>
           <td>{{item.status}}</td>
+          {% if item.status == 'Done' %}
+          <td><input type="submit" name="Reset" value="Reset" onclick="window.location.href='{{ url_for('reset_item', id=item.id) }}'"></td>
+          {% else %}
+          <td><input type="submit" name="Complete" value="Complete" onclick="window.location.href='{{ url_for('complete_item', id=item.id) }}'"></td>
+          {% endif %}
         </tr>
         {% endfor %}
       </table>
