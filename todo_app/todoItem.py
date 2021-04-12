@@ -1,15 +1,20 @@
+from datetime import datetime
+
 class ToDoItem:
 
-    def __init__(self, id, name, description, due, status = 'To Do'):
+    def __init__(self, id, name, description, start, due, last_modified, status = 'To Do'):
         self.id = id
         self.name = name
         self.description = description
+        self.start = start
         self.due = due
         self.status = status
+        self.last_modified_string = last_modified
+        self.last_modified = datetime.strptime(last_modified, '%Y-%m-%dT%H:%M:%S.%fZ')
 
     @classmethod
     def convertFromTrello(item, card, board_list):
-        return item(card['id'], card['name'], card['desc'], card['due'], board_list['name'])
+        return item(card['id'], card['name'], card['desc'], card['start'], card['due'], card['dateLastActivity'], board_list['name'])
 
     def reset(self):
         self.status = 'To Do'
