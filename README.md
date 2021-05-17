@@ -106,3 +106,20 @@ collected 1 item
 todo_app/e2etests/test_e2e.py .                                          [100%]
 
 ============================== 1 passed in 19.33s ==============================
+
+### Build and Run docker image
+
+The application can be built in development mode which will run with flask with debug functionality.
+When the application is built in production mode it will run with gunicorn.
+
+To build and run for development:
+```
+docker build --target development --tag todo-app:dev .
+docker run --env-file ./.env -p 80:5000 --mount type=bind,source="$(pwd)"/todo_app,target=/app/todo_app todo-app:dev
+```
+
+To build and run for production: 
+```
+docker build --target production --tag todo-app:prod .
+docker run -p 5000:5000 todo-app:prod
+```
