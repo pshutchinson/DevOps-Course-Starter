@@ -1,5 +1,8 @@
 import os
+from dotenv import load_dotenv
 
+basedir = os.path.abspath(os.path.dirname(__file__))
+load_dotenv(os.path.join(basedir, '.env'))
 
 class Config:
     """Base configuration variables."""
@@ -10,4 +13,5 @@ class Config:
     TRELLO_KEY= os.environ.get('TRELLO_KEY')
     TRELLO_TOKEN = os.environ.get('TRELLO_TOKEN')
     TRELLO_BOARD_ID = os.environ.get('TRELLO_BOARD_ID')
+    
     
