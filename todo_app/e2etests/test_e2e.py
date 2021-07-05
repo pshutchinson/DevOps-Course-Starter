@@ -14,7 +14,6 @@ from selenium.webdriver.support import expected_conditions as EC
 
 @pytest.fixture(scope="module")
 def driver():
-    os.environ["PATH"] += os.pathsep + '/Users/paulhutchinson/Dev/Corndel/Course/ex2/DevOps-Course-Starter/todo_app/e2etests'
     driver = webdriver.Firefox()
     return driver
 
