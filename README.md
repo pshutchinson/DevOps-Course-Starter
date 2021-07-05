@@ -60,3 +60,49 @@ You should see output similar to the following:
  * Debugger PIN: 226-556-590
 ```
 Now visit [`http://localhost:5000/`](http://localhost:5000/) in your web browser to view the app.
+
+## Testing the app
+
+To run the unit tests from the todo_app directory run the following command:
+```bash
+$ pytest test_ViewModel.py
+```
+
+You should see output similar to the following:
+```bash
+============================= test session starts =================================================================
+platform darwin -- Python 3.9.0, pytest-6.1.2, py-1.9.0, pluggy-0.13.1
+rootdir: /Users/paulhutchinson/Dev/Corndel/Course/project/DevOps-Course-Starter/todo_app
+collected 7 items               
+test_ViewModel.py .......       
+[100%]
+============================== 7 passed in 0.18s ==================================================================
+```
+
+To run an individual unit test specify <test_module>::<test_name> as follows:
+```bash
+$ pytest test_ViewModel.py::test_todo_items
+```
+
+## End to End testing
+
+To run the end to end test the following are required:
+- Firefox browser
+- Geckodriver
+- Add location of Geckodriver to Path or set in test_e2e.py
+
+- In VSCode open TestExplorer
+- In test_e2e.py run test_task_journey
+- Results shown in Debug Console should look like below:
+
+============================= test session starts ==============================
+platform darwin -- Python 3.9.0, pytest-6.1.2, py-1.9.0, pluggy-0.13.1
+rootdir: /Users/paulhutchinson/Dev/Corndel/Course/ex2/DevOps-Course-Starter
+collected 1 item
+==DISCOVERED TESTS BEGIN==
+{"tests": [{"id": "todo_app/e2etests/test_e2e.py::test_task_journey", "line": 55}], "errors": []}
+==DISCOVERED TESTS END==
+
+todo_app/e2etests/test_e2e.py .                                          [100%]
+
+============================== 1 passed in 19.33s ==============================
