@@ -1,5 +1,2 @@
 # All env files
-*.env
-*.env.template
-*.env.test
 Vagrantfile
