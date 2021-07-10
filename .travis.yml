@@ -1,12 +1,14 @@
+env:
+  global:
+    - FLASK_APP=todo_app/app
+    - FLASK_ENV=development
+    - SECRET_KEY=secret_key
+    - TRELLO_KEY=trello_key
+    - TRELLO_TOKEN=trello_token
+    - TRELLO_BOARD_ID=trello_board_id
+
 script:
 - docker build --target test --tag my-test-image .
 - docker run my-test-image todo_app/test_app.py
 - docker run my-test-image todo_app/test_ViewModel.py
 - docker run my-test-image todo_app/e2etests
-env:
-  - FLASK_APP=todo_app/app
-  - FLASK_ENV=development
-  - SECRET_KEY=secret_key
-  - TRELLO_KEY=trello_key
-  - TRELLO_TOKEN=trello_token
-  - TRELLO_BOARD_ID=trello_board_id
