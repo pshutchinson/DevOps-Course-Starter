@@ -1,14 +1,9 @@
 env:
   global:
-    - FLASK_APP=todo_app/app
-    - FLASK_ENV=development
-    - SECRET_KEY=secret_key
-    - TRELLO_KEY=trello_key
-    - TRELLO_TOKEN=trello_token
-    - TRELLO_BOARD_ID=trello_board_id
-
+  - secure: "tst90cnAH6UOMvMC2uuJHA5mNiw0/yxWKcPzRPCp966XREX/qk7xHV4+PZT7vSJdYswUesSPFqLE1hufH9IQ2UO+kaZhCSZur5w9k+i3mdwcsusBUqpluZn6RKp4gauTEmIJnDRKfQUlS9PpaTckfvjczM4Kdc3fPQPZjdkUhXsy6X/KHv/e8tx25ufqzhIGDgOe8CrjWlrO9Pm/7kZ8LaEGo190uxsPJdJjOJO4KPkHb9xXI0GNdfCEvV+5K9cVgghCu9SxYGjfQzp2AUJQ4zoaoy+LTlGNu3v3CAUpD4tnV1Gup/6ZfVQqERMH20auhPTag/IXYiQPZ16fMTlaaD+aSDhY2s16Ke0OHni3h1WSDNhCHhxxSzyFz5DXNw+DQL998A3wkmTO14zC8+QZtJe3qFFWuNs1QJ32P/yFXgnj82uod4YgOUkdBO4yTZdh3cLsNfi2U80t76tc1sXrOToRsjudLn9eCby9QhzklTx0GgvK7pTGoQUD2VqYHsH0TByFDtdB7FVaEEbcZl2JVYdI8OiUbbqX0Bf5unsnTzlS4/uB0OwQjCf6ZeKJtvuAkuJLrdvP6GHCBvf7Rs13v3OkEYi4wgPUph/hyVRZVtug9zo8D0TnSIdZq1+mmC8LJu6sAqEbjk/wMV9pICe/HBdWMUGpST0EMKW2aW1K1iQ="
 script:
 - docker build --target test --tag my-test-image .
 - docker run my-test-image todo_app/test_app.py
 - docker run my-test-image todo_app/test_ViewModel.py
-- docker run -e FLASK_APP -e FLASK_ENV -e SECRET_KEY -e TRELLO_KEY -e TRELLO_TOKEN -e TRELLO_BOARD_ID my-test-image todo_app/e2etests
+- docker run -e FLASK_APP -e FLASK_ENV -e SECRET_KEY -e TRELLO_KEY -e TRELLO_TOKEN
+  -e TRELLO_BOARD_ID my-test-image todo_app/e2etests
