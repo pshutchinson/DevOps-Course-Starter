@@ -8,7 +8,6 @@ env:
   - secure: "B0WQnN6dImOotOTMBg3dGxCsjAo8EA+14KOBkk3tTU9PM1+mCiyP4BCf7OYAVh/0wKDTkPOT4+lOGinoy7kScPwogt2hAZqE3HpvLZfJK+oNZK3laB3m0lAe4ZokVpt78xdppL6T3WPcgC5w0yUN7sgSHe/7w6rDUJOR23/TMNWDppYlVSjb+EBZiHluQbWfXIY6DR2MYGAsVeWceW9VCOEkS45T8IqTPKe2GDdZQ5DpekPwgvH999VioY8kCE+TjOilHBV8jnKjqsIbx/vUy6CuMhRrsm7ss7KmxtynZbFef+K6royzQLATSkjT5SengPLgtAcz343JX4U2qhxT2dDbkpX9Bz8lqk+UkEeEVqbzTM0Q+bBMbvwsUggCWiZcX/zh/PEE9GtOWjPLfeaTHi6sG22TrML6X+8wRO5OaMgjFnOlH7uj3gKIuxdRkNbgQZ7poP4/sLqO12d0KMbKDavLuR7hOs8xSydKVroK82ig7dx6iUSIw18h4XkQNSZ80X91Myi2SMeWjZ/SfpHuE8+wrBMB+CaXB0p1RxeTEcr/7mQ9G6U30eMkKJAlnl7lpb1smI8ByUCtZu1q23tuKjKkVN4wHSNERVXXTzyXoku2cq14p79+xOF+T1Ogb9YdAQtGLrXnOPwMHlhI2xWZMrTFgogk79Y0Y2qR2aun/z0="
 script:
 - docker build --target test --tag my-test-image .
-- docker run my-test-image todo_app/test_app.py
 - docker run my-test-image todo_app/test_ViewModel.py
 - docker run -e FLASK_APP -e FLASK_ENV -e SECRET_KEY -e TRELLO_KEY -e TRELLO_TOKEN
   -e TRELLO_BOARD_ID my-test-image todo_app/e2etests
