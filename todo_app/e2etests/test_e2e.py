@@ -12,10 +12,15 @@ from selenium.webdriver.common.by import By
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 
-@pytest.fixture(scope="module")
+@pytest.fixture(scope='module')
 def driver():
-    driver = webdriver.Firefox()
-    return driver
+    opts = webdriver.ChromeOptions()
+    opts.add_argument('--headless')
+    opts.add_argument('--no-sandbox')
+    opts.add_argument('--disable-dev-shm-usage')
+ 
+    with webdriver.Chrome('/usr/bin/chromedriver', options=opts) as driver:
+        yield driver
 
 @pytest.fixture(scope="module")
 def app_with_temp_board():

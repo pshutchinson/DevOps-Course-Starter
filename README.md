@@ -123,3 +123,18 @@ To build and run for production:
 docker build --target production --tag todo-app:prod .
 docker run --env-file ./.env -p 5000:5000 todo-app:prod
 ```
+### Running tests in docker
+
+You can run the tests in docker by running one of the following commands:
+
+```
+docker run my-test-image todo_app/test_app.py
+```
+
+```
+docker run my-test-image todo_app/test_ViewModel.py
+```
+
+```
+docker run -e FLASK_APP -e FLASK_ENV -e SECRET_KEY -e TRELLO_KEY -e TRELLO_TOKEN -e TRELLO_BOARD_ID my-test-image todo_app/e2etests
+```
