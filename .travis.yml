@@ -13,7 +13,7 @@ script:
 - docker run my-test-image todo_app/test_ViewModel.py
 - docker run my-test-image todo_app/test_app.py
 - docker run -e FLASK_APP -e FLASK_ENV -e SECRET_KEY -e TRELLO_KEY -e TRELLO_TOKEN -e TRELLO_BOARD_ID my-test-image todo_app/e2etests
-- docker login -username pshutchinson --password-stdin DH_PASSWORD
+- docker login --username pshutchinson --password-stdin DH_PASSWORD
 - docker build --target production --tag TAG .
 - docker push TAG
 - docker build --target production --tag pshutchinson/todo_app:latest .
