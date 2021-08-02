@@ -13,10 +13,13 @@ script:
 - docker run my-test-image todo_app/test_ViewModel.py
 - docker run my-test-image todo_app/test_app.py
 - docker run -e FLASK_APP -e FLASK_ENV -e SECRET_KEY -e TRELLO_KEY -e TRELLO_TOKEN -e TRELLO_BOARD_ID my-test-image todo_app/e2etests
-before_deploy:
 - docker login -u DH_USERNAME -p DH_PASSWORD
-- docker build --target production --tag pshutchinson/todo_app:TRAVIS_COMMIT .
-- docker push pshutchinson/todo_app:TRAVIS_COMMIT
+- docker build --target production --tag pshutchinson/todo_app:$TRAVIS_COMMIT .
+- docker push pshutchinson/todo_app:$TRAVIS_COMMIT
 - docker build --target production --tag pshutchinson/todo_app:latest .
 - docker push pshutchinson/todo_app:latest
 - docker logout
+notifications:
+  email:
+    on_success: never
+    on_failure: always
