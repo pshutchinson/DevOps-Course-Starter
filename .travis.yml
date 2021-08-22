@@ -19,6 +19,8 @@ script:
 - docker push "$TRAVIS_TAG"
 - docker build --target production --tag pshutchinson/todo_app:latest .
 - docker push pshutchinson/todo_app:latest
+- docker tag pshutchinson/todo_app registry.heroku.com/pshutchinson-todoapp/web
+- docker push registry.heroku.com/pshutchinson-todoapp/web
 - docker logout
 notifications:
   email:
