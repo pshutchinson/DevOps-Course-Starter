@@ -19,8 +19,10 @@ COPY ./ /
 
 FROM base as production
 
-ENTRYPOINT ["gunicorn"]
-CMD ["--bind", "0.0.0.0:5000", "todo_app.app:create_app()"]
+#ENTRYPOINT ["gunicorn"]
+#CMD ["--bind", "0.0.0.0:5000", "todo_app.app:create_app()"]
+RUN chmod +x ./entrypoint.sh
+ENTRYPOINT ./entrypoint.sh ${PORT}
 
 FROM base as development
 
