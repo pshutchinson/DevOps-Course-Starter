@@ -42,6 +42,8 @@ def create_board(name):
     url = get_url('boards')
 
     response = requests.post(url, params)
+
+    response.raise_for_status()
     
     return response.json()
 
@@ -51,6 +53,8 @@ def delete_board(id):
     url = get_url('boards/%s' % id)
 
     response = requests.delete(url, params=params)
+
+    response.raise_for_status()
     
     return response.json()
 
@@ -61,6 +65,8 @@ def get_boards():
 
     response = requests.get(url, params)
     
+    response.raise_for_status()
+
     return response.json()
 
 def get_lists():
@@ -72,6 +78,8 @@ def get_lists():
     url = get_url('boards/%s/lists' % os.environ['TRELLO_BOARD_ID'])
     
     response = requests.get(url, params)
+
+    response.raise_for_status()
 
     return response.json()
 
