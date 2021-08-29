@@ -25,8 +25,6 @@ script:
 - echo $HEROKU_TOKEN | docker login --username=_ --password-stdin registry.heroku.com
 - docker tag pshutchinson/todo_app registry.heroku.com/pshutchinson-todoapp/web
 - docker push registry.heroku.com/pshutchinson-todoapp/web
-- docker tag quarkus7/which-tram registry.heroku.com/$HEROKU_APP_NAME/web
-- docker push registry.heroku.com/$HEROKU_APP_NAME/web
 - echo $HEROKU_TOKEN | heroku login -i
 - heroku container:login
 - heroku container:push web --app pshutchinson-todoapp
