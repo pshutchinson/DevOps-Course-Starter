@@ -9,24 +9,24 @@ env:
   - secure: "B0WQnN6dImOotOTMBg3dGxCsjAo8EA+14KOBkk3tTU9PM1+mCiyP4BCf7OYAVh/0wKDTkPOT4+lOGinoy7kScPwogt2hAZqE3HpvLZfJK+oNZK3laB3m0lAe4ZokVpt78xdppL6T3WPcgC5w0yUN7sgSHe/7w6rDUJOR23/TMNWDppYlVSjb+EBZiHluQbWfXIY6DR2MYGAsVeWceW9VCOEkS45T8IqTPKe2GDdZQ5DpekPwgvH999VioY8kCE+TjOilHBV8jnKjqsIbx/vUy6CuMhRrsm7ss7KmxtynZbFef+K6royzQLATSkjT5SengPLgtAcz343JX4U2qhxT2dDbkpX9Bz8lqk+UkEeEVqbzTM0Q+bBMbvwsUggCWiZcX/zh/PEE9GtOWjPLfeaTHi6sG22TrML6X+8wRO5OaMgjFnOlH7uj3gKIuxdRkNbgQZ7poP4/sLqO12d0KMbKDavLuR7hOs8xSydKVroK82ig7dx6iUSIw18h4XkQNSZ80X91Myi2SMeWjZ/SfpHuE8+wrBMB+CaXB0p1RxeTEcr/7mQ9G6U30eMkKJAlnl7lpb1smI8ByUCtZu1q23tuKjKkVN4wHSNERVXXTzyXoku2cq14p79+xOF+T1Ogb9YdAQtGLrXnOPwMHlhI2xWZMrTFgogk79Y0Y2qR2aun/z0="
   - secure: "gLBjXyAHpbFB8W6WLS6JOkM2mbp/ig01UMDqFWcJe0xx9t6eHiQ5RWA9Q3RAhv/9vfPMjYwmHHEKe+4D4uGuwK2iUOTHtXjJzX2qRIV9SHSIf/UNatFYpYeoZoYvu9Rx3/d6Ko1yW7ra9AMQd9nDSGXedJQjyP7SDEyJcVngu/2zAW3itVM93eMQbJJckyPBPU08HvyD3EbhXX6/HOxMvBe1/8cb1kmSgZVwmf9ljXlB4vNIXxrHRIIwlhYAbhYiNC/k6L4h6FvHSnRwHRLOohPqMZc3gOYZUDhIppYOBgt/IBL3IwLucWCFhJr5i9FsZ05XPagDznbpBfm0JV0D/dM1zMMF9Wt26lOb65+hn7xZTOrMj3OworY9iOuoOysSB0nV9WIf4oS7MjSbW+W+Q6J6ltD1ATTtRRucB96U76zBk+2mSPo+TV5EJmeEFjnt9/iFHRcKDaHEKDahAaGnx9+yNvyHv39EslqvLePSEm1GVZmYIE6IOkyIBRg7pTCesg0kPnF0wN/BzCkQgTmGF2+04JGG7yZCPb7tXXiaGDcThZLOGxiZmacI8wa8lAEpD1IcvLA6Hi0/pBeTMownVWLbUgmlsHuC/G0jhu++8w6Mkb08ig3hCrZGZeGM0vx5fdTRG2aQ7gck+wGJMCjKOnsjYJjqFq8Fui0YKInppAs="
   - secure: "TlJyeY1XluVJaFi+G6DokgSaDTpCGPdYXMVXyhhuiuKKd4vHVjofD+v4MwWEsUazEf/bVeQLPEcN4Ga1t32oiAvSDUgF56zkeFgZ6P6M67m6rTKsZbB5UYXHZR6DbVArFZGKhMyHxnY4mgv+fUVqwmbE7rW/Waka6paeE/N1ILpuBCrpJqmRNsceIfV7RbU6jWaxExgfSu8X+UDXG1uyxd56ibRnbJwlReMS7Qu7Eul4sArJPS+0mNoZWR+bQ+9IhyufRwCWHJYenm4HvoeNuc2cpi3NxSDyMUcn79sRqam3HNytExXnBqpXmHpyBCa7nIEXgyNXtPH45IrESTPAZM4AIU6mva2fOUU+t4KLTQdvsIBYJLaWh8Ycwxe7tzRACXAGQUBAjZy/4nTaFI3rJjpM25HOXvvHLcJ5Kt8YoV5U4+XVxBBArYRQ2vuxFioAAKBxIqe8XFI/Ed8skkIHLz+nhKuXGvK0V3FOduSzbyqD9JZnHwj9xcGKM3QnrwruOh7Y4/GRp4cMe+GHJpC4gfR+F3XyT+vYVjjF7pJpt6Vv2po85qQNddwg1/v+3XJIhiTKd6jgSE7nh1Pdh66I5PSnpR0SmBNU5s/GTUKCduF2oJArktUdWqqBjh0WGZD/i1KGnHAjWtPhjXILyG9YBzBd3lqUOBHKrfy5SAkwmXk="
-- script:
-  - export TRAVIS_TAG="pshutchinson/todo_app:${TRAVIS_COMMIT}"
-  - docker build --target test --tag my-test-image .
-  - docker run my-test-image todo_app/test_ViewModel.py
-  - docker run my-test-image todo_app/test_app.py
-  - docker run -e FLASK_APP -e FLASK_ENV -e SECRET_KEY -e TRELLO_KEY -e TRELLO_TOKEN -e TRELLO_BOARD_ID my-test-image todo_app/e2etests
-  - echo $DOCKER_PASSWORD | docker login --username "$DOCKER_USERNAME" --password-stdin
-  - docker build --target production --tag "$TRAVIS_TAG" .
-  - docker push "$TRAVIS_TAG"
-  - docker build --target production --tag pshutchinson/todo_app:latest .
-  - docker push pshutchinson/todo_app:latest
-  - docker pull pshutchinson/todo_app:latest
-  - echo $HEROKU_TOKEN | docker login --username=_ --password-stdin registry.heroku.com
-  - docker tag pshutchinson/todo_app registry.heroku.com/pshutchinson-todoapp/web
-  - docker push registry.heroku.com/pshutchinson-todoapp/web
-  - heroku container:push web --app pshutchinson-todoapp
-  - heroku container:release web --app pshutchinson-todoapp
-  - docker logout
+script:
+- export TRAVIS_TAG="pshutchinson/todo_app:${TRAVIS_COMMIT}"
+- docker build --target test --tag my-test-image .
+- docker run my-test-image todo_app/test_ViewModel.py
+- docker run my-test-image todo_app/test_app.py
+- docker run -e FLASK_APP -e FLASK_ENV -e SECRET_KEY -e TRELLO_KEY -e TRELLO_TOKEN -e TRELLO_BOARD_ID my-test-image todo_app/e2etests
+- echo $DOCKER_PASSWORD | docker login --username "$DOCKER_USERNAME" --password-stdin
+- docker build --target production --tag "$TRAVIS_TAG" .
+- docker push "$TRAVIS_TAG"
+- docker build --target production --tag pshutchinson/todo_app:latest .
+- docker push pshutchinson/todo_app:latest
+- docker pull pshutchinson/todo_app:latest
+- echo $HEROKU_TOKEN | docker login --username=_ --password-stdin registry.heroku.com
+- docker tag pshutchinson/todo_app registry.heroku.com/pshutchinson-todoapp/web
+- docker push registry.heroku.com/pshutchinson-todoapp/web
+- heroku container:push web --app pshutchinson-todoapp
+- heroku container:release web --app pshutchinson-todoapp
+- docker logout
 notifications:
   email:
     on_success: never
