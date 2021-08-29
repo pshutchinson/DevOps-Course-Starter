@@ -22,6 +22,7 @@ script:
 - docker build --target production --tag pshutchinson/todo_app:latest .
 - docker push pshutchinson/todo_app:latest
 - docker pull pshutchinson/todo_app:latest
+- echo $HEROKU_TOKEN | docker login --username=_ --password-stdin registry.heroku.com
 - docker tag pshutchinson/todo_app registry.heroku.com/pshutchinson-todoapp/web
 - docker push registry.heroku.com/pshutchinson-todoapp/web
 - docker tag quarkus7/which-tram registry.heroku.com/$HEROKU_APP_NAME/web
