@@ -20,13 +20,14 @@ script:
 - docker push "$TRAVIS_TAG"
 - docker build --target production --tag pshutchinson/todo_app:latest .
 - docker push pshutchinson/todo_app:latest
-- docker pull pshutchinson/todo_app:latest
-- echo $HEROKU_TOKEN | docker login --username=_ --password-stdin registry.heroku.com
-- docker tag pshutchinson/todo_app registry.heroku.com/pshutchinson-todoapp/web
-- docker push registry.heroku.com/pshutchinson-todoapp/web
-- heroku container:push web --app pshutchinson-todoapp
-- heroku container:release web --app pshutchinson-todoapp
 - docker logout
+deploy:
+  provider: heroku
+  api_key:
+    secure: "TlJyeY1XluVJaFi+G6DokgSaDTpCGPdYXMVXyhhuiuKKd4vHVjofD+v4MwWEsUazEf/bVeQLPEcN4Ga1t32oiAvSDUgF56zkeFgZ6P6M67m6rTKsZbB5UYXHZR6DbVArFZGKhMyHxnY4mgv+fUVqwmbE7rW/Waka6paeE/N1ILpuBCrpJqmRNsceIfV7RbU6jWaxExgfSu8X+UDXG1uyxd56ibRnbJwlReMS7Qu7Eul4sArJPS+0mNoZWR+bQ+9IhyufRwCWHJYenm4HvoeNuc2cpi3NxSDyMUcn79sRqam3HNytExXnBqpXmHpyBCa7nIEXgyNXtPH45IrESTPAZM4AIU6mva2fOUU+t4KLTQdvsIBYJLaWh8Ycwxe7tzRACXAGQUBAjZy/4nTaFI3rJjpM25HOXvvHLcJ5Kt8YoV5U4+XVxBBArYRQ2vuxFioAAKBxIqe8XFI/Ed8skkIHLz+nhKuXGvK0V3FOduSzbyqD9JZnHwj9xcGKM3QnrwruOh7Y4/GRp4cMe+GHJpC4gfR+F3XyT+vYVjjF7pJpt6Vv2po85qQNddwg1/v+3XJIhiTKd6jgSE7nh1Pdh66I5PSnpR0SmBNU5s/GTUKCduF2oJArktUdWqqBjh0WGZD/i1KGnHAjWtPhjXILyG9YBzBd3lqUOBHKrfy5SAkwmXk="
+  app: pshutchinson-todoapp
+  on:
+    repo: registry.heroku.com/pshutchinson-todoapp
 notifications:
   email:
     on_success: never
