@@ -27,7 +27,3 @@ env:
 - heroku container:push web --app pshutchinson-todoapp
 - heroku container:release web --app pshutchinson-todoapp
 - docker logout
-notifications:
-  email:
-    on_success: never
-    on_failure: always
