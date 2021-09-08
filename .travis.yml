@@ -16,18 +16,23 @@ script:
 - docker run my-test-image todo_app/test_app.py
 - docker run -e FLASK_APP -e FLASK_ENV -e SECRET_KEY -e TRELLO_KEY -e TRELLO_TOKEN
   -e TRELLO_BOARD_ID my-test-image todo_app/e2etests
-- echo $DOCKER_PASSWORD | docker login --username "$DOCKER_USERNAME" --password-stdin
-- docker build --target production --tag "$TRAVIS_TAG" .
-- docker push "$TRAVIS_TAG"
-- docker build --target production --tag pshutchinson/todo_app:latest .
-- docker push pshutchinson/todo_app:latest
-- docker pull pshutchinson/todo_app:latest
-- echo $HEROKU_API_KEY | docker login --username=_ --password-stdin registry.heroku.com
-- docker tag pshutchinson/todo_app registry.heroku.com/pshutchinson-todoapp/web
-- docker push registry.heroku.com/pshutchinson-todoapp/web
-- heroku container:push web --app pshutchinson-todoapp
-- heroku container:release web --app pshutchinson-todoapp
-- docker logout
+deploy:
+  provider: script
+  on:
+    branch: master
+  script: >-
+    echo $DOCKER_PASSWORD | docker login --username "$DOCKER_USERNAME" --password-stdin &&
+    docker build --target production --tag "$TRAVIS_TAG" . &&
+    docker push "$TRAVIS_TAG" &&
+    docker build --target production --tag pshutchinson/todo_app:latest . &&
+    docker push pshutchinson/todo_app:latest &&
+    docker pull pshutchinson/todo_app:latest &&
+    echo $HEROKU_API_KEY | docker login --username=_ --password-stdin registry.heroku.com &&
+    docker tag pshutchinson/todo_app registry.heroku.com/pshutchinson-todoapp/web &&
+    docker push registry.heroku.com/pshutchinson-todoapp/web &&
+    heroku container:push web --app pshutchinson-todoapp &&
+    heroku container:release web --app pshutchinson-todoapp &&
+    docker logout
 notifications:
   email:
     on_success: never
