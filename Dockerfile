@@ -17,11 +17,6 @@ EXPOSE 5000
 
 COPY ./ /
 
-FROM base as production
-
-ENTRYPOINT ["gunicorn"]
-CMD ["--bind", "0.0.0.0:5000", "todo_app.app:create_app()"]
-
 FROM base as development
 
 ENV FLASK_APP=todo_app/app.py
@@ -51,3 +46,8 @@ RUN CHROME_MAJOR_VERSION=$(google-chrome --version | sed -E "s/.* ([0-9]+)(\.[0-
   && chmod 755 /usr/bin/chromedriver
 
 ENTRYPOINT ["poetry", "run", "pytest"]
+
+FROM base as production
+
+ENTRYPOINT ["gunicorn"]
+CMD ["todo_app.app:create_app()"]

@@ -121,7 +121,7 @@ docker run --env-file ./.env -p 80:5000 --mount type=bind,source="$(pwd)"/todo_a
 To build and run for production: 
 ```
 docker build --target production --tag todo-app:prod .
-docker run --env-file ./.env -p 5000:5000 todo-app:prod
+docker run --env-file ./.env todo-app:prod
 ```
 ### Running tests in docker
 
