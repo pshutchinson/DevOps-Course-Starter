@@ -8,28 +8,28 @@ from datetime import datetime, timedelta
 
 def test_todo_items():
     items = []
-    items.append(ToDoItem(1, 'List saved todo items', '', None, None, datetime.today().strftime("%Y-%m-%dT%H:%M:%S.%fZ"), 'To Do'))
+    items.append(ToDoItem(1, 'List saved todo items', '', None, None, datetime.today(), 'To Do'))
     view_model = ViewModel(items)
     todo_items = view_model.todo_items
     assert len(todo_items) == 1
 
 def test_doing_items():
     items = []
-    items.append(ToDoItem(1, 'List saved todo items', '', None, None, datetime.today().strftime("%Y-%m-%dT%H:%M:%S.%fZ"), 'Doing'))
+    items.append(ToDoItem(1, 'List saved todo items', '', None, None, datetime.today(), 'Doing'))
     view_model = ViewModel(items)
     doing_items = view_model.doing_items
     assert len(doing_items) == 1
 
 def test_done_items():
     items = []
-    items.append(ToDoItem(1, 'List saved todo items', '', None, None, datetime.today().strftime("%Y-%m-%dT%H:%M:%S.%fZ"), 'Done'))
+    items.append(ToDoItem(1, 'List saved todo items', '', None, None, datetime.today(), 'Done'))
     view_model = ViewModel(items)
     done_items = view_model.done_items
     assert len(done_items) == 1
 
 def test_recent_done_items():
     items = []
-    items.append(ToDoItem(1, 'List saved todo items', '', None, None, datetime.today().strftime("%Y-%m-%dT%H:%M:%S.%fZ"), 'Done'))
+    items.append(ToDoItem(1, 'List saved todo items', '', None, None, datetime.today(), 'Done'))
     view_model = ViewModel(items)
     done_items = view_model.recent_done_items
     assert len(done_items) == 1

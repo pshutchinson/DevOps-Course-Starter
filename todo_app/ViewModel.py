@@ -1,4 +1,5 @@
-from todo_app.services import trello
+#from todo_app.services import trello
+from todo_app.services import mongo
 
 from datetime import datetime
 
@@ -20,21 +21,24 @@ class ViewModel(object):
 
     @property
     def todo_items(self):
-        todo_iterator = filter(trello.filter_todo, self._items)
+        #todo_iterator = filter(trello.filter_todo, self._items)
+        todo_iterator = filter(mongo.filter_todo, self._items)
         todo_items = list(todo_iterator)
         return todo_items
 
     @property
     def doing_items(self):
-        doing_iterator = filter(trello.filter_doing, self._items)
+        #doing_iterator = filter(trello.filter_doing, self._items)
+        doing_iterator = filter(mongo.filter_doing, self._items)
         doing_items = list(doing_iterator)
         return doing_items
 
     @property
     def done_items(self):
-        done_iterator = filter(trello.filter_done, self._items)
+        #done_iterator = filter(trello.filter_done, self._items)
+        done_iterator = filter(mongo.filter_done, self._items)
         done_items = list(done_iterator)
-        done_items.sort(key=lambda x: x.last_modified, reverse=True)
+        #done_items.sort(key=lambda x: x.last_modified, reverse=True)
         return done_items
 
     @property
@@ -51,7 +55,8 @@ class ViewModel(object):
 
     @property
     def older_done_items(self):
-        return list(filter(filterOlderThanToday, self.done_items))
+        return list(self.done_items)
+        #return list(filter(filterOlderThanToday, self.done_items))
 
     @property
     def chosen_done_items(self):
