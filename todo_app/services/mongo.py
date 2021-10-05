@@ -18,16 +18,13 @@ def get_connection():
 def create_board(name):
     return get_connection()[name]
 
-def delete_board(id):
-    return ""
-
 def get_board():
     dbs = get_connection().list_database_names()
 
-    if 'Board' in dbs:
-        return get_connection()['Board']
+    if os.environ['MONGO_DB'] in dbs:
+        return get_connection()[os.environ['MONGO_DB']]
     else:
-        return create_board('Board')
+        return create_board(os.environ['MONGO_DB'])
 
 def get_list():
     board = get_board()
@@ -68,15 +65,9 @@ def add_item(title):
     }
     insert_id = boardlist.insert_one(item)
 
-    card = boardlist.find({'_id' : insert_id})
-
-    return ToDoItem.convertFromMongo(card)
-
 def update_item(id, list_name, start, due):
     boardlist = get_list()
-    item = boardlist.find_one({'_id' : ObjectId(id)})
-    #boardlist.update_one()
-    result = boardlist.find_one_and_update({'_id' : ObjectId(id)},
+    boardlist.find_one_and_update({'_id' : ObjectId(id)},
     {
         "$set": {"boardList": list_name}#,
         #"$set": {"start": start},

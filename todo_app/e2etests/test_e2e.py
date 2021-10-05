@@ -3,7 +3,7 @@ import pytest
 
 from threading import Thread
 from todo_app import app
-from todo_app.services import trello
+from todo_app.services import mongo
 from dotenv import find_dotenv, load_dotenv
 from selenium import webdriver
 from selenium.webdriver.firefox.firefox_binary import FirefoxBinary
@@ -33,8 +33,8 @@ def app_with_temp_board():
     application = app.create_app()
 
     with application.app_context():
-        board_id = create_trello_board()
-        os.environ['TRELLO_BOARD_ID'] = board_id
+        create_board('Test')
+        os.environ['MONGO_DB'] = 'Test'
 
     # start the app in its own thread.
     thread = Thread(target=lambda:
@@ -47,15 +47,9 @@ def app_with_temp_board():
     
     # Tear Down
     thread.join(1)
-    with application.app_context():
-        delete_trello_board(board_id)
 
-def create_trello_board():
-    response = trello.create_board('Test')
-    return response['id']
-
-def delete_trello_board(board_id):
-    trello.delete_board(board_id)
+def create_board(name):
+    mongo.create_board(name)
 
 def test_task_journey(driver, app_with_temp_board):
     try:
