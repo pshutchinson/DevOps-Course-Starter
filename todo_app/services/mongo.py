@@ -11,7 +11,7 @@ from todo_app.todoItem import ToDoItem
 from datetime import datetime
 
 def get_connection():
-    connection_string = 'mongodb+srv://' + os.environ['MONGO_USER'] + ':' + os.environ['MONGO_PWD'] + '@' + os.environ['MONGO_CLUSTER'] + '/' + os.environ['MONGO_DB']
+    connection_string = 'mongodb+srv://' + os.environ['MONGO_USER'] + ':' + os.environ['MONGO_PASSWORD'] + '@' + os.environ['MONGO_CLUSTER'] + '/' + os.environ['MONGO_DB']
     client = MongoClient(connection_string)       
     return client
 
