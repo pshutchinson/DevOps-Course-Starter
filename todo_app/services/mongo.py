@@ -52,9 +52,6 @@ def get_items():
 def add_item(title):
     boardlist = get_list()
     
-    #from dateutil import parser
-    #expiry_date = '2021-07-13T00:00:00.000Z'
-    #expiry = parser.parse(expiry_date)
     item = {
         "name" : title,
         "desc" : title,
@@ -63,16 +60,13 @@ def add_item(title):
         "dateLastActivity" : datetime.utcnow(),
         "boardList" : "To Do"
     }
-    insert_id = boardlist.insert_one(item)
+    boardlist.insert_one(item)
 
 def update_item(id, list_name, start, due):
     boardlist = get_list()
     boardlist.find_one_and_update({'_id' : ObjectId(id)},
     {
-        "$set": {"boardList": list_name}#,
-        #"$set": {"start": start},
-        #"$set": {"due": due},
-        #"$set": {"dateLastActivity": datetime.utcnow()}
+        "$set": {"boardList": list_name}
     })
 
 def start_item(id):
