@@ -1,12 +1,8 @@
 import os
 
 from flask import Flask, redirect, render_template, request, url_for
-
-#from todo_app.services import trello
 from todo_app.services import mongo
-
 from todo_app.flask_config import Config
-
 from todo_app.ViewModel import ViewModel
 
 def create_app():
