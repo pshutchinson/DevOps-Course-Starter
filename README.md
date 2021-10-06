@@ -137,5 +137,5 @@ docker run my-test-image todo_app/test_ViewModel.py
 ```
 
 ```
-docker run -e FLASK_APP -e FLASK_ENV -e SECRET_KEY -e MONGO_CLUSTER -e MONGO_DB -e MONGO_USER -e MONGO_PWD my-test-image todo_app/e2etests
+docker run -e FLASK_APP -e FLASK_ENV -e SECRET_KEY -e MONGO_CLUSTER -e MONGO_DB -e MONGO_USER -e MONGO_PASSWORD my-test-image todo_app/e2etests
 ```
