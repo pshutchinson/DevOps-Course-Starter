@@ -5,12 +5,6 @@ from dotenv import find_dotenv, load_dotenv
 from unittest.mock import patch, Mock
 from pymongo import MongoClient
 
-
-TEST_MONGO_CLUSTER='cluster0.duj0p.mongodb.net'
-TEST_MONGO_DB='Board'
-TEST_MONGO_USER='user'
-TEST_MONGO_PWD='pwd'
-
 @pytest.fixture
 def client():
     # Use our test integration config instead of the 'real' version
@@ -33,3 +27,4 @@ def populateItems():
 def test_client_view(mock_get_items, client):
     mock_get_items.side_effect = populateItems
     response = client.get('/')
+    assert response.status_code == 200
