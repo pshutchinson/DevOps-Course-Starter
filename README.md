@@ -32,15 +32,16 @@ $ cp .env.template .env  # (first time only)
 
 The `.env` file is used by flask to set environment variables when running `flask run`. This enables things like development mode (which also enables features like hot reloading when you make a file change). There's also a [SECRET_KEY](https://flask.palletsprojects.com/en/1.1.x/config/#SECRET_KEY) variable which is used to encrypt the flask session cookie.
 
-## Trello
+## Mongo
 
-The ToDo app requires a board from a Trello account to sync with for storage.
+The ToDo app requires a Mongo database to store the to do items.
 
 The `.env` file should contain the following environment variables:
 
-TRELLO_KEY='<key>'
-TRELLO_TOKEN='<token>'
-TRELLO_BOARD_ID='<board_id>'
+MONGO_CLUSTER='<cluster>'
+MONGO_DB='<board>'
+MONGO_USER='<user>'
+MONGO_PASSWORD='<password>'
 
 ## Running the App
 
@@ -136,5 +137,5 @@ docker run my-test-image todo_app/test_ViewModel.py
 ```
 
 ```
-docker run -e FLASK_APP -e FLASK_ENV -e SECRET_KEY -e TRELLO_KEY -e TRELLO_TOKEN -e TRELLO_BOARD_ID my-test-image todo_app/e2etests
+docker run -e FLASK_APP -e FLASK_ENV -e SECRET_KEY -e MONGO_CLUSTER -e MONGO_DB -e MONGO_USER -e MONGO_PASSWORD my-test-image todo_app/e2etests
 ```
